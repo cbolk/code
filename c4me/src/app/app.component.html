@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-apres">
+  <div class="container">
+  <div class="collapse navbar-collapse center-nav" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto nav-section center-nav nav-inline">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['']">
+            Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/esercizi">Esercizi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">Temi d'esame</a>
+          </li>
+        </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-1">
+      <div class="jumbotron">
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

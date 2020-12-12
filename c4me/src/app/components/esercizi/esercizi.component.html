@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h3>Elenco degli esercizi</h3>
+    <span class='float-right'><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">nuovo esercizio</a></span>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titolo</th>
+          <th scope="col">Testo</th>
+          <th scope="col">Argomento</th>
+          <th class="text-center" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ex of esercizi; let i = index">
+          <th scope="row">{{ex.id}}</th>
+          <!--td [ngStyle]="{ 'color': ex.color }">X</td-->
+          <td>{{ex.titolo}}</td>
+          <td><div [innerHtml]="ex.testo"></div></td>
+          <td>{{ex.argomento}}</td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-primary" routerLink="/edit-book/{{ex.id}}">&nbsp;&nbsp;Edit&nbsp;&nbsp;</button>
+            <button class="btn btn-sm btn-danger" (click)="delete(ex.id, i)">Delete</button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+/*--------------------------------------------------------------
+4.0 Clearings
+--------------------------------------------------------------*/
+
+.clear:before,
+.clear:after,
+.entry-content:before,
+.entry-content:after,
+.entry-footer:before,
+.entry-footer:after,
+.comment-content:before,
+.comment-content:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after,
+.nav-links:before,
+.nav-links:after,
+.pagination:before,
+.pagination:after,
+.comment-author:before,
+.comment-author:after,
+.widget-area:before,
+.widget-area:after,
+.widget:before,
+.widget:after,
+.comment-meta:before,
+.comment-meta:after {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+.clear:after,
+.entry-content:after,
+.entry-footer:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after,
+.nav-links:after,
+.pagination:after,
+.comment-author:after,
+.widget-area:after,
+.widget:after,
+.comment-meta:after {
+	clear: both;
+}
+
+/*--------------------------------------------------------------
+5.0 Typography
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+textarea {
+	font-family: "Raleway", "Lato", "Open Sans", sans-serif;
+	font-size: 16px;
+	font-size: 1.1rem;
+	font-weight: 400;
+	line-height: 1.4;
+    color: #232425;
+    background-color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	clear: both;
+	line-height: 1.4;
+	margin: 0 0 0.35em;
+	padding: 1em 0 0;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child {
+	padding-top: 0;
+}
+
+h1 {
+	color: #666;
+	font-size: 36px;
+	font-size: 2rem;
+	font-weight: 400;
+}
+
+h2 {
+	color: #333;
+	font-size: 24px;
+	font-size: 1.5rem;
+	font-weight: 300;
+}
+
+h1 + h2 {
+	margin-top: -1.5em;
+}
+
+h3 {
+	color: #333;
+	font-size: 20px;
+	font-size: 1.2rem;
+	font-weight: 800;
+}
+
+h4 {
+	color: #767676;
+	font-size: 13px;
+	font-size: 0.8125rem;
+	font-weight: 800;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+}
+
+h5 {
+	color: #333;
+	font-size: 15px;
+	font-size: 0.9375rem;
+	font-weight: 800;
+}
+
+h4 + h5 {
+	margin-top: -1.5em;
+}
+
+
+p {
+	margin: 0 0 0.5em;
+	padding: 0;
+}
+
+/* code */
+pre {
+  margin: 1em 0;
+}
+
+.hljs {
+  display: block; padding: 1em;
+  background: #f1f1f1; color: #000;
+}
+
+.hljs-keyword,
+.hljs-title,
+.hljs-name {
+  color: #393e46;
+}
+
+.hljs-string,
+.hljs-literal {
+  color: #F77;
+}
+
+.hljs-comment {
+    color: #766;
+}
