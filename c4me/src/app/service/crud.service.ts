@@ -31,6 +31,35 @@ export class CrudService {
 	  )
   }
 
+  // Add
+  AddEsercizio(data: esercizio): Observable<any> {
+    let API_URL = `${this.REST_API}/add-esercizio`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Update
+  updateEsercizio(id:any, data:any): Observable<any> {
+    let API_URL = `${this.REST_API}/update-esercizio/${id}`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Delete
+  deleteEsercizio(id:any): Observable<any> {
+    let API_URL = `${this.REST_API}/delete-esercizio/${id}`;
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders})
+    .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+
+
   handleError(error: HttpErrorResponse){
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
