@@ -36,8 +36,8 @@ function createRouter(db) {
 
   router.get('/esercizi/:topic', function (req, res, next) {
     db.query(
-      'SELECT id, titolo, testo, argomento FROM esercizi WHERE argomento LIKE %topic% LIMIT 10 OFFSET ?',
-      [10*(req.params.page || 0)],
+      'SELECT id, titolo, testo, argomento FROM esercizi WHERE argomento LIKE %?% LIMIT 10 OFFSET ?',
+      [req.params.topic, 10*(req.params.page || 0)],
       (error, results) => {
         if (error) {
           console.log(error);
@@ -49,22 +49,20 @@ function createRouter(db) {
     );
   });
 
-
-router.get('/esercizio/:id', function (req, res, next) {
-  db.query(
-    'SELECT id, titolo, testo, argomento, colore FROM esercizi WHERE id=?',
-    [req.params.id, 10*(req.params.page || 0)],
-    (error, results) => {
-      if (error) {
-        console.log(error);
-        res.status(500).json({status: 'error'});
-      } else {
-        res.status(200).json(results);
+  router.get('/esercizio/:id', function (req, res, next) {
+    db.query(
+      'SELECT id, titolo, testo, argomento, colore FROM esercizi WHERE id=?',
+      [req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
       }
-    }
-  );
-});
-
+    );
+  });
 
 	router.put('/esercizio/:id', function (req, res, next) {
   		db.query(
@@ -94,9 +92,22 @@ router.get('/esercizio/:id', function (req, res, next) {
   		);
 	});
 
+  router.get('/esercizio/:id/soluzioni', function (req, res, next) {
+    db.query(
+      'SELECT esercizi.*, soluzioni.* FROM esercizi INNER JOIN soluzioni ON esercizi.id = soluzioni.esercizifk WHERE esercizi.id=?',
+      [req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
 
   return router;
 }
 
 module.exports = createRouter;
-

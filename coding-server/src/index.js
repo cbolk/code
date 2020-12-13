@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const esercizi = require('./esercizi');
 const esami = require('./esami');
+const soluzioni = require('./soluzioni');
 
 const connection = mysql.createConnection({
   host     : 'localhost',
@@ -20,9 +21,9 @@ const app = express()
   .use(cors())
   .use(bodyParser.json())
   .use(esercizi(connection))
-  .use(esami(connection));
+  .use(esami(connection))
+  .use(soluzioni(connection));
 
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
 });
-

@@ -16,11 +16,14 @@ export class CrudService {
 
   constructor(private httpClient: HttpClient) { }
 
-  //getEsercizi
+  //
+  //Esercizi
+  //
+  // Lista
   getEsercizi(){
 	   return this.httpClient.get(`${this.REST_API}/esercizi`);
   }
-
+  // Esercizio
   getEsercizio(id:any): Observable<any> {
     let API_URL = `${this.REST_API}/esercizio/${id}`;
     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
@@ -30,16 +33,14 @@ export class CrudService {
 	  catchError(this.handleError)
 	  )
   }
-
   // Add
-  AddEsercizio(data: esercizio): Observable<any> {
+  addEsercizio(data: esercizio): Observable<any> {
     let API_URL = `${this.REST_API}/add-esercizio`;
     return this.httpClient.post(API_URL, data)
       .pipe(
         catchError(this.handleError)
       )
   }
-
   // Update
   updateEsercizio(id:any, data:any): Observable<any> {
     let API_URL = `${this.REST_API}/update-esercizio/${id}`;
@@ -48,7 +49,6 @@ export class CrudService {
         catchError(this.handleError)
       )
   }
-
   // Delete
   deleteEsercizio(id:any): Observable<any> {
     let API_URL = `${this.REST_API}/delete-esercizio/${id}`;
@@ -58,7 +58,19 @@ export class CrudService {
       )
   }
 
-
+  //
+  //  Soluzioni
+  //
+  // Lista soluzioni di un esercizio id
+  getSoluzioni(id:any): Observable<any> {
+    let API_URL = `${this.REST_API}/soluzione/${id}`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+	  .pipe(map((res: any) => {
+	     return res || {}
+	  }),
+	  catchError(this.handleError)
+	  )
+  }
 
   handleError(error: HttpErrorResponse){
     let errorMessage = '';

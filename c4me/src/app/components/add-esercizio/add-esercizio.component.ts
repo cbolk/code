@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { Router } from '@angular/router';
 import { CrudService } from './../../service/crud.service';
@@ -30,9 +30,9 @@ export class AddEsercizioComponent implements OnInit {
   }
 
   onSubmit(): any {
-    this.crudService.AddEsercizio(this.esercizioForm.value)
+    this.crudService.addEsercizio(this.esercizioForm.value)
     .subscribe(() => {
-        console.log('Esercizio aggiunto successfully!')
+        console.log('Esercizio aggiunto!')
         this.ngZone.run(() => this.router.navigateByUrl('/esercizi'))
       }, (err) => {
         console.log(err);
