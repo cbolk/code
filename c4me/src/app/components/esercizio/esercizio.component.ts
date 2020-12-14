@@ -13,9 +13,9 @@ export class EsercizioComponent implements OnInit {
 //  esercizio : any = {};
   getId: any;
   esercizio : any = {};
-  esercizi : any = [];
   esami : any = [];
   soluzioni : any = [];
+  testo : String = '';
 
   constructor(
     private router: Router,
@@ -29,19 +29,16 @@ export class EsercizioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.crudService.getEsercizi().subscribe(res => {
-      this.esercizi =res;
-    });
     this.crudService.getSoluzioniEsercizio(this.getId).subscribe(res => {
       this.soluzioni = res;
     });
-//    this.crudService.getEsamiEsercizio(this.getId).subscribe(res => {
-//      this.esami = res;
-//    });
+    this.crudService.getEsamiEsercizio(this.getId).subscribe(res => {
+      this.esami = res;
+    });
   }
 
-  formatArgomenti(args: string): string {
-    return args.replace(/ /g, ', ').replace(/-/g, ' ');
+  formatArgomenti(testo: String): String {
+    return testo.replace(/ /g, ', ').replace(/-/g, ' ');
   }
 
 }
