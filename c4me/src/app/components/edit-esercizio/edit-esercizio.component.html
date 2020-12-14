@@ -5,7 +5,7 @@
 
 <div class="row justify-content-center mt-5">
     <div class="col-md-12">
-        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
           <div class="form-group">
             <label>Titolo</label>
             <input class="form-control" type="text" formControlName="titolo" required>
@@ -29,7 +29,7 @@
 
           <div class="form-group">
             <label>Colore</label>
-            <input formControlName="colore" [(colorPicker)]="color" [style.background]="color"/>
+            <input formControlName="colore" [(colorPicker)]="color" [style.background]="esercizioColore"/>
             <!--input class="form-control" type="text" formControlName="colore" required-->
           </div>
 

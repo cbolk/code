@@ -9,6 +9,7 @@ import { CrudService } from './../../service/crud.service';
 export class EserciziComponent implements OnInit {
 
   esercizi:any = [];
+  argomenti : any = [];
 
   constructor(private crudService: CrudService) { }
 

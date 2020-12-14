@@ -8,7 +8,6 @@
     <table class="table table-sm">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Titolo</th>
           <th scope="col">Testo</th>
           <th scope="col">Argomento</th>
@@ -17,13 +16,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let ex of esercizi; let i = index">
-          <th scope="row">{{ex.id}}</th>
+          <th scope="row" style='background-color="{{ex.colore}}"'>{{i}}</th>
           <!--td [ngStyle]="{ 'color': ex.color }">X</td-->
           <td>{{ex.titolo}}</td>
           <td><div [innerHtml]="ex.testo"></div></td>
           <td>{{ex.argomento}}</td>
           <td class="text-center">
-            <button class="btn btn-sm btn-primary" routerLink="/edit-book/{{ex.id}}">&nbsp;&nbsp;Edit&nbsp;&nbsp;</button>
+            <button class="btn btn-sm btn-primary" routerLink="/edit-esercizio/{{ex.id}}">&nbsp;&nbsp;Edit&nbsp;&nbsp;</button>
             <button class="btn btn-sm btn-danger" (click)="delete(ex.id, i)">Delete</button>
         </tr>
       </tbody>

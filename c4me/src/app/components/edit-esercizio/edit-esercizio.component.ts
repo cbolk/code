@@ -13,6 +13,7 @@ export class EditEsercizioComponent implements OnInit {
   getId: any;
   updateForm: FormGroup;
   esercizioTesto: String = '';
+  esercizioColore: String = '#ffffff';
 
   constructor(
     public formBuilder: FormBuilder,
@@ -30,6 +31,7 @@ export class EditEsercizioComponent implements OnInit {
         colore: res[0]['colore']
       });
       this.esercizioTesto = res[0]['testo'];
+      this.esercizioColore = res[0]['colore'];
     });
 
     this.updateForm = this.formBuilder.group({
