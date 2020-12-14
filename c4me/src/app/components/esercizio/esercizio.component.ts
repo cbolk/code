@@ -12,7 +12,11 @@ export class EsercizioComponent implements OnInit {
 
 //  esercizio : any = {};
   getId: any;
-  esercizio : any;
+  ex : any = {'id' : 2, titolo : 'prova', testo : 'nulla', colore : '#dede34', argomento : 'booh'};
+  esercizio : any = {};
+  esercizi : any = [];
+  esami : any = [];
+  esercizioTesto : String = "ufff";
 
   constructor(
     private router: Router,
@@ -20,14 +24,26 @@ export class EsercizioComponent implements OnInit {
     private crudService: CrudService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
-
     this.crudService.getEsercizio(this.getId).subscribe(res => {
-      console.log(res)
-      this.esercizio = res;
+      this.esercizio = res[0];
+      this.esercizioTesto = res[0]['testo'];
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.crudService.getEsercizi().subscribe(res => {
+      this.esercizi =res;
+    });
+//    this.crudService.getSoluzioniEsercizio(this.getId).subscribe(res => {
+//      this.soluzioni = res;
+//    });
+//    this.crudService.getEsamiEsercizio(this.getId).subscribe(res => {
+//      this.esami = res;
+//    });
+  }
+
+  formatArgomenti(args: string): string {
+    return args.replace(/ /g, ', ').replace(/-/g, ' ');
   }
 
 }

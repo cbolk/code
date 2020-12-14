@@ -1,16 +1,16 @@
-<div class="container" ng-controller="EsercizioController">
+<div class="container" *ngIf="esercizi">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h3>Dettagli esercizio # {{esercizio.id}}</h3>
+    <h3>{{esercizio.titolo}} (#{{esercizio.id}})</h3>
   </div>
 
-  <div class="row">
-		<div class="col-xs-12 col-sm-12">
-			<h3>{{esercizio.titolo}}</h3>
-			<div [innerHtml]="esercizio.testo"></div>
-      <p><strong>Argomenti:</strong><br/>
-        {{esercizio.argomento}}
-        </p>
+  <div class="row justify-content-center mt-5">
+      <div class="col-md-12">
+           <div class="formattedHtml">
+             <div [innerHtml]="esercizio.testo"></div>
+           </div>
+              <p><strong>Argomenti:</strong><br/>
+              {{formatArgomenti(esercizio.argomento)}}
+              </p>
       </div>
   </div>
-
 </div>
