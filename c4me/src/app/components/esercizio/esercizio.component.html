@@ -1,4 +1,4 @@
-<div class="container" *ngIf="esercizi">
+<div class="container">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h3>{{esercizio.titolo}} (#{{esercizio.id}})</h3>
   </div>
@@ -12,5 +12,15 @@
               {{formatArgomenti(esercizio.argomento)}}
               </p>
       </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Soluzioni</h4>
+    </div>
+    <div class="col-md-12" *ngFor="let s of soluzioni; let i = index">
+      <p>#{{i+1}}</p>
+      <pre class='hljs'>{{s.codice}}</pre>
+      <div [innerHtml]="s.note"></div>
+    </div>
   </div>
 </div>
