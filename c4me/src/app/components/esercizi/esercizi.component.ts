@@ -8,18 +8,19 @@ import { CrudService } from './../../service/crud.service';
 })
 export class EserciziComponent implements OnInit {
 
-  esercizi:any = [];
+  esercizi : any = [];
   argomenti : any = [];
 
   constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
     this.crudService.getEsercizi().subscribe(res => {
-      console.log(res)
       this.esercizi =res;
     });
   }
 
-
+  formatArgomenti(args: string): string {
+    return args.replace(/ /g, ', ').replace(/-/g, ' ');
+  }
 
 }

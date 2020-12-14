@@ -16,14 +16,15 @@
       </thead>
       <tbody>
         <tr *ngFor="let ex of esercizi; let i = index">
-          <th scope="row" style='background-color="{{ex.colore}}"'>{{i}}</th>
+          <th scope="row" [ngStyle]="{'color': ex.colore}">{{i+1}}</th>
           <!--td [ngStyle]="{ 'color': ex.color }">X</td-->
           <td>{{ex.titolo}}</td>
           <td><div [innerHtml]="ex.testo"></div></td>
-          <td>{{ex.argomento}}</td>
+          <td>{{formatArgomenti(ex.argomento)}}</td>
           <td class="text-center">
-            <button class="btn btn-sm btn-primary" routerLink="/edit-esercizio/{{ex.id}}">&nbsp;&nbsp;Edit&nbsp;&nbsp;</button>
-            <button class="btn btn-sm btn-danger" (click)="delete(ex.id, i)">Delete</button>
+            <button class="btn btn-sm btn-success" routerLink="/esercizio/{{ex.id}}">Dettagli&nbsp;</button>
+            <button class="btn btn-sm btn-primary" routerLink="/edit-esercizio/{{ex.id}}">Modifica</button>
+            <button class="btn btn-sm btn-danger" (click)="delete(ex.id, i)">&nbsp;Elimina&nbsp;</button>
         </tr>
       </tbody>
     </table>

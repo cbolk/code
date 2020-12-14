@@ -21,22 +21,22 @@ function createRouter(db) {
 
   router.get('/esami', function (req, res, next) {
   db.query(
-    'SELECT id, data, anno FROM esami LIMIT 10 OFFSET ?',
+    'SELECT * FROM esami LIMIT 10 OFFSET ?',
     [10*(req.params.page || 0)],
     (error, results) => {
-      if (error) {
-        console.log(error);
-        res.status(500).json({status: 'error'});
-      } else {
-        res.status(200).json(results);
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
       }
-    }
-  );
-});
+    );
+  });
 
   router.get('/esamicompleti', function (req, res, next) {
   db.query(
-    'SELECT esami.*, esercizi.* FROM esami INNER JOIN eserciziesame ' + 
+    'SELECT esami.*, esercizi.* FROM esami INNER JOIN eserciziesame ' +
     'ON esami.id = eserciziesame.esamifk INNER JOIN esercizi ON ' +
     'eserciziesame.esercizifk = esercizi.id ORDER BY eserciziesame.ordine LIMIT 10 OFFSET ?',
     [10*(req.params.page || 0)],
@@ -85,4 +85,3 @@ function createRouter(db) {
 }
 
 module.exports = createRouter;
-

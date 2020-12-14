@@ -24,6 +24,7 @@ export class CrudService {
 	   return this.httpClient.get(`${this.REST_API}/esercizi`);
   }
   // Esercizio
+  //usata??
   getEsercizio(id:any): Observable<any> {
     let API_URL = `${this.REST_API}/esercizio/${id}`;
     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
@@ -33,6 +34,18 @@ export class CrudService {
 	  catchError(this.handleError)
 	  )
   }
+  // Esercizio Completo
+  getEsercizioCompleto(id:any): Observable<any> {
+    let API_URL = `${this.REST_API}/esercizio/${id}/soluzioni`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+	  .pipe(map((res: any) => {
+	     return res || {}
+	  }),
+	  catchError(this.handleError)
+	  )
+  }
+
+
   // Add
   addEsercizio(data: esercizio): Observable<any> {
     let API_URL = `${this.REST_API}/add-esercizio`;
@@ -58,12 +71,25 @@ export class CrudService {
       )
   }
 
+  // Lista esami in cui e' stato usato l'esercizio id
+  getEsamiEsercizio(id:any): Observable<any> {
+    let API_URL = `${this.REST_API}/esercizio/${id}/esami`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+	  .pipe(map((res: any) => {
+	     return res || {}
+	  }),
+	  catchError(this.handleError)
+	  )
+  }
+
+
+
   //
   //  Soluzioni
   //
   // Lista soluzioni di un esercizio id
-  getSoluzioni(id:any): Observable<any> {
-    let API_URL = `${this.REST_API}/soluzione/${id}`;
+  getSoluzioniEsercizio(id:any): Observable<any> {
+    let API_URL = `${this.REST_API}/esercizio/${id}/soluzioni`;
     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
 	  .pipe(map((res: any) => {
 	     return res || {}

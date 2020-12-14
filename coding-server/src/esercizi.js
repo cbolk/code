@@ -21,7 +21,7 @@ function createRouter(db) {
 
   router.get('/esercizi', function (req, res, next) {
     db.query(
-      'SELECT id, titolo, testo, argomento FROM esercizi LIMIT 10 OFFSET ?',
+      'SELECT * FROM esercizi LIMIT 10 OFFSET ?',
       [10*(req.params.page || 0)],
       (error, results) => {
         if (error) {
@@ -36,7 +36,7 @@ function createRouter(db) {
 
   router.get('/esercizi/:topic', function (req, res, next) {
     db.query(
-      'SELECT id, titolo, testo, argomento FROM esercizi WHERE argomento LIKE %?% LIMIT 10 OFFSET ?',
+      'SELECT * FROM esercizi WHERE argomento LIKE %?% LIMIT 10 OFFSET ?',
       [req.params.topic, 10*(req.params.page || 0)],
       (error, results) => {
         if (error) {
@@ -51,7 +51,7 @@ function createRouter(db) {
 
   router.get('/esercizio/:id', function (req, res, next) {
     db.query(
-      'SELECT id, titolo, testo, argomento, colore FROM esercizi WHERE id=?',
+      'SELECT * FROM esercizi WHERE id=?',
       [req.params.id],
       (error, results) => {
         if (error) {
@@ -94,7 +94,23 @@ function createRouter(db) {
 
   router.get('/esercizio/:id/soluzioni', function (req, res, next) {
     db.query(
-      'SELECT esercizi.*, soluzioni.* FROM esercizi INNER JOIN soluzioni ON esercizi.id = soluzioni.esercizifk WHERE esercizi.id=?',
+      'SELECT * FROM soluzioni WHERE esercizifk=?',
+      [req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  // esami in cui e' stato usato un eserizio
+  router.get('/esercizio/:id/esami', function (req, res, next) {
+    db.query(
+      'SELECT * FROM esami INNER JOIN eserciziesame ON esami.id = eserciziesame.esamifk WHERE eserciziesame.esercizifk =?',
       [req.params.id],
       (error, results) => {
         if (error) {
@@ -109,5 +125,7 @@ function createRouter(db) {
 
   return router;
 }
+
+
 
 module.exports = createRouter;
