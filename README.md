@@ -47,16 +47,14 @@ In a temporary directory:
 4. Configuring index.js
 	
 		const express = require('express');
-		const app = express();
 		const cors = require('cors');
-		const bodyParser = require('body-parser');
-		
+		const bodyParser = require('body-parser');		
 		const mysql = require('mysql');
 		
 		// files queries to db returning json
     	// expected file readings.js in src directory
 		
-		const readings = require(./readings);
+		const readings = require('./readings');
 		const connection = mysql.createConnection({
 	    host     : 'localhost',
 	    user     : 'USERNAME',
