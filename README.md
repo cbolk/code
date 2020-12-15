@@ -44,16 +44,19 @@ command: `npm -init`
 command: `npm install express cors body-parser mysql --save`
 
 4. Configuring `index.js`
-
-<code>
-	const express = require('express'),
-	  const app = express(),
-	  const cors = require('cors'),
-	  const bodyParser = require('body-parser');
-	  const mysql = require('mysql');
-	  // files queries to db returning json
-	  // expected file readings.js in src directory
-	  const readings = require(./readings)
+	
+	
+    const express = require('express');
+    const app = express();
+    const cors = require('cors');
+    const bodyParser = require('body-parser');
+  
+    const mysql = require('mysql');
+     
+    // files queries to db returning json
+    // expected file readings.js in src directory
+	  
+	  const readings = require(./readings);
 	  
 	  const connection = mysql.createConnection({
 	    host     : 'localhost',
@@ -74,6 +77,6 @@ command: `npm install express cors body-parser mysql --save`
 
 	// starting the server
 	app.listen(port, () => {
-  	  console.log(`Express server listening on port ${port}`);
+		console.log(`Express server listening on port ${port}`);
 });
 </code>
