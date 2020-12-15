@@ -1,7 +1,14 @@
 # code
 An app to store and maintain coding exercises
 
-## express to provide rest api
+It uses:
+
+* express for RESTful API accessing mariadb
+* angular for webapp
+
+
+
+## express to provide RESTful API
 
 ### install node.js
 
