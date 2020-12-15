@@ -6,44 +6,45 @@ An app to store and maintain coding exercises
 ### install node.js
 
 1. Check Architecture version
-        `uname -m`
 
-output (ARCHVERSION): `armv71`
+        uname -m
 
-2. Get the compiled version of `node.js` for the architecture
+output (ARCHVERSION): armv71
+
+2. Get the compiled version of node.js for the architecture
 
 In a temporary directory:
 
-        `wget https://nodejs.org/download/release/LASTEST_RELEASE_NUM/node-LASTEST_RELEASE_NUM-linux-ARCHVERSION.tar.gz`
+		wget https://nodejs.org/download/release/LASTEST_RELEASE_NUM/node-LASTEST_RELEASE_NUM-linux-ARCHVERSION.tar.gz
 
 3. Extract
 
-        `tar -xzf node-LASTEST_RELEASE_NUM-linux-ARCHVERSION.tar.gz`
+        tar -xzf node-LASTEST_RELEASE_NUM-linux-ARCHVERSION.tar.gz
 
 4. Copy the files to a directory in PATH:
 
-        `cd node-LASTEST_RELEASE_NUM-linux-ARCHVERSION`
-        `sudo cp -R * /usr/local/`
+        cd node-LASTEST_RELEASE_NUM-linux-ARCHVERSION
+        sudo cp -R * /usr/local/
 
 5. Check everything is fine
 
-        `node -v`
+        node -v
 
-        `npm -v`
+        npm -v
 
 ### build RESTful API
 
 1. Create a directory where you want the server side to be
 
-2. Evoke `npm` initializer
+2. Evoke npm initializer
 
-        `npm -init`
+        npm -init
 
 3. Install Express.js and dependencies to access mysql db
 
-        `npm install express cors body-parser mysql --save`
+        npm install express cors body-parser mysql --save
 
-4. Configuring `index.js`
+4. Configuring index.js
 	
 		const express = require('express');
 		const app = express();
@@ -74,6 +75,6 @@ In a temporary directory:
 		.use(readings(connection));
 		// starting the server
 		app.listen(port, () => {
-			console.log(`Express server listening on port ${port}`);
+			console.log(Express server listening on port ${port});
 		});
 
