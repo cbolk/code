@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from "@angular/forms";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CrudService } from './../../service/crud.service';
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'app-add-esercizio',
@@ -11,6 +11,7 @@ import { CrudService } from './../../service/crud.service';
 export class AddEsercizioComponent implements OnInit {
 
   esercizioForm: FormGroup;
+  nuovoID : Number = -1;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -30,12 +31,18 @@ export class AddEsercizioComponent implements OnInit {
   }
 
   onSubmit(): any {
-    this.crudService.addEsercizio(this.esercizioForm.value)
-    .subscribe(() => {
-        console.log('Esercizio aggiunto!')
-        this.ngZone.run(() => this.router.navigateByUrl('/esercizi'))
-      }, (err) => {
-        console.log(err);
-    });
-  }
+      this.crudService.addEsercizio(this.esercizioForm.value)
+      .subscribe(() => {
+          console.log('Esercizio aggiunto');
+          this.crudService.getEsercizioAggiunto().subscribe(res => {
+            console.log(res[0]);
+            this.nuovoID = res[0];
+            this.ngZone.run(() => this.router.navigateByUrl('/esercizi'))
+          });
+//          this.ngZone.run(() => this.router.navigateByUrl('/esercizi'))
+        }, (err) => {
+          console.log(err);
+      });
+    }
+
 }

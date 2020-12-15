@@ -1,5 +1,5 @@
 export class esercizio {
-	id!: String;
+	id!: Number;
 	titolo!: String;
 	testo!: String;
 	argomento!: String;

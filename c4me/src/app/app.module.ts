@@ -10,6 +10,7 @@ import { EserciziComponent } from './components/esercizi/esercizi.component';
 import { EsercizioComponent } from './components/esercizio/esercizio.component';
 import { AddEsercizioComponent } from './components/add-esercizio/add-esercizio.component';
 import { EditEsercizioComponent } from './components/edit-esercizio/edit-esercizio.component';
+import { AddLezioneComponent } from './components/add-lezione/add-lezione.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EditEsercizioComponent } from './components/edit-esercizio/edit-eserciz
     EserciziComponent,
     EsercizioComponent,
     AddEsercizioComponent,
-    EditEsercizioComponent
+    EditEsercizioComponent,
+    AddLezioneComponent
   ],
   imports: [
     FormsModule,

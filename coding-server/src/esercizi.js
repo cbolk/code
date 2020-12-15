@@ -5,18 +5,31 @@ function createRouter(db) {
 
   // the routes are defined here
   router.post('/esercizio', (req, res, next) => {
-  	db.query(
-   	 	'INSERT INTO esercizi (titolo, testo, argomento, colore) VALUES (?,?,?,?)',
-    		[req.body.titolo, req.body.testo, req.body.argomento, req.body.colore],
-    		(error) => {
-      		if (error) {
-        		console.error(error);
-        		res.status(500).json({status: 'error'});
-      		} else {
-        		res.status(200).json({status: 'ok'});
-      		}
-    	}
-  	);
+    db.query(
+     	 	'INSERT INTO esercizi (titolo, testo, argomento, colore) VALUES (?,?,?,?)',
+      		[req.body.titolo, req.body.testo, req.body.argomento, req.body.colore],
+      		(error) => {
+        		if (error) {
+          		console.error(error);
+          		res.status(500).json({status: 'error'});
+        		} else {
+          		res.status(200).json({status: 'ok'});
+        		}
+      	}
+    	);
+  });
+
+  router.route('/book').post((req, res, next) => {
+    db.query(
+        'INSERT INTO esercizi (titolo, testo, argomento, colore) VALUES (?,?,?,?)',
+        [req.body.titolo, req.body.testo, req.body.argomento, req.body.colore],
+        (error) => {
+            if (error) {
+              res.status(500).json({status: 'error'});
+            } else {
+              res.status(200).json({status: 'ok'});
+            }
+      })
   });
 
   router.get('/esercizi', function (req, res, next) {

@@ -5,6 +5,7 @@ import { EserciziComponent } from './components/esercizi/esercizi.component';
 import { EsercizioComponent } from './components/esercizio/esercizio.component';
 import { AddEsercizioComponent } from './components/add-esercizio/add-esercizio.component';
 import { EditEsercizioComponent } from './components/edit-esercizio/edit-esercizio.component';
+import { AddLezioneComponent } from './components/add-lezione/add-lezione.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
 { path: 'esercizi', component: EserciziComponent },
 { path: 'esercizio/:id', component: EsercizioComponent },
 { path: 'add-esercizio', component: AddEsercizioComponent },
-{ path: 'edit-esercizio/:id', component: EditEsercizioComponent }
+{ path: 'edit-esercizio/:id', component: EditEsercizioComponent },
+{ path: 'add-lezione', component: AddLezioneComponent },
 ];
 
 @NgModule({

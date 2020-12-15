@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { esercizio } from './esercizio';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { esercizio } from './esercizio';
+import { lezione } from './lezione';
 
 
 @Injectable({
@@ -48,12 +49,21 @@ export class CrudService {
 
   // Add
   addEsercizio(data: esercizio): Observable<any> {
-    let API_URL = `${this.REST_API}/add-esercizio`;
+    let API_URL = `${this.REST_API}/esercizio`;
     return this.httpClient.post(API_URL, data)
       .pipe(
         catchError(this.handleError)
       )
   }
+
+  getEsercizioAggiunto(){
+	   return this.httpClient.get(`${this.REST_API}/getlastid`);
+  }
+
+
+
+
+
   // Update
   updateEsercizio(id:any, data:any): Observable<any> {
     let API_URL = `${this.REST_API}/esercizio/${id}`;
@@ -97,6 +107,23 @@ export class CrudService {
 	  catchError(this.handleError)
 	  )
   }
+
+
+  //
+  // lezioni
+  getTipologia(){
+	   return this.httpClient.get(`${this.REST_API}/lezioni/tipologia`);
+  }
+
+  addLezione(data: lezione): Observable<any> {
+    let API_URL = `${this.REST_API}/add-lezione`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+
 
   handleError(error: HttpErrorResponse){
     let errorMessage = '';
