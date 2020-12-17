@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CrudService } from './../../service/crud.service';
 
 @Component({
@@ -17,13 +18,21 @@ export class EserciziComponent implements OnInit {
 
 
 
-  constructor(private crudService: CrudService) {
+  constructor(
+      private router: Router,
+      private activatedRoute: ActivatedRoute,
+      private crudService: CrudService
+    ) {
+    this.activatedRoute.queryParams.subscribe(params => {
+        this.page = params['page'];
+    });
   }
 
   ngOnInit(): void {
     this.crudService.getEsercizi(this.page).subscribe(res => {
       this.esercizi = res;
-      this.count = 12;
+      console.log(this.page);
+//      this.count = res.count;
     });
   }
 
