@@ -34,8 +34,8 @@ function createRouter(db) {
 
   router.get('/esercizi', function (req, res, next) {
     db.query(
-      'SELECT * FROM esercizi LIMIT 10 OFFSET ?',
-      [10*(req.params.page || 0)],
+      'SELECT * FROM esercizi LIMIT 9 OFFSET ?',
+      [9*(req.query.page || 0)],
       (error, results) => {
         if (error) {
           console.log(error);
@@ -49,8 +49,8 @@ function createRouter(db) {
 
   router.get('/esercizi/:topic', function (req, res, next) {
     db.query(
-      'SELECT * FROM esercizi WHERE argomento LIKE %?% LIMIT 10 OFFSET ?',
-      [req.params.topic, 10*(req.params.page || 0)],
+      'SELECT * FROM esercizi WHERE argomento LIKE %?% LIMIT 9 OFFSET ?',
+      [req.params.topic, 9*(req.query.page || 0)],
       (error, results) => {
         if (error) {
           console.log(error);

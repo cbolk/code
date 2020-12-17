@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { AddLezioneComponent } from './components/add-lezione/add-lezione.compon
     ColorPickerModule,
     BrowserModule,
     HttpClientModule,
+    NgxPaginationModule,
     AppRoutingModule
   ],
   providers: [],

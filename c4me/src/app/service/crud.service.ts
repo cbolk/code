@@ -21,9 +21,10 @@ export class CrudService {
   //Esercizi
   //
   // Lista
-  getEsercizi(){
-	   return this.httpClient.get(`${this.REST_API}/esercizi`);
+  getEsercizi(pagenum:Number = 0){
+	   return this.httpClient.get(`${this.REST_API}/esercizi?page=${pagenum}`);
   }
+
   // Esercizio
   //usata??
   getEsercizio(id:any): Observable<any> {

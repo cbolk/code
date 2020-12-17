@@ -38,7 +38,11 @@ export class EsercizioComponent implements OnInit {
   }
 
   formatArgomenti(testo: String): String {
-    return testo.replace(/ /g, ', ').replace(/-/g, ' ');
+    var strList = '<ul class="list;inline">';
+    strList = strList + '<li class="list;inline;item">';
+    strList = strList + testo.replace(/ /g, '</li><li class="list;inline;item">')
+    strList = strList + '</ul>';
+    return strList.replace(/-/g, ' ').replace(/;/g, '-');
   }
 
 }

@@ -35,9 +35,9 @@ export class AddEsercizioComponent implements OnInit {
       .subscribe(() => {
           console.log('Esercizio aggiunto');
           this.crudService.getEsercizioAggiunto().subscribe(res => {
-            console.log(res[0]);
-            this.nuovoID = res[0];
-            this.ngZone.run(() => this.router.navigateByUrl('/esercizi'))
+            console.log(res[0]["LAST_INSERT_ID()"]);
+            this.nuovoID = res[0]["LAST_INSERT_ID()"];
+            this.ngZone.run(() => this.router.navigateByUrl('/esercizio/' + this.nuovoID))
           });
 //          this.ngZone.run(() => this.router.navigateByUrl('/esercizi'))
         }, (err) => {

@@ -1,32 +1,20 @@
-<nav class="navbar navbar-expand-md fixed-top navbar-apres">
-  <div class="container">
-  <div class="collapse navbar-collapse center-nav" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto nav-section center-nav nav-inline">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['']">
-            Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="/esercizi">Esercizi</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">Temi d'esame</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">Soluzioni</a>
-          </li>
-        </ul>
-    </div>
+<header class="bd-header py-3 d-flex align-items-stretch">
+  <div class="container-fluid d-flex align-items-center">
+    <h1 class="d-flex align-items-center fs-4 mb-0">
+      C for Me
+    </h1>
   </div>
-</nav>
-<div class="container">
-  <div class="row">
-    <div class="col-1">
-      <div class="jumbotron">
-        <p>&nbsp;</p>
-      </div>
-    </div>
-  </div>
+</header>
+<aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
+  <p></p>
+  <p class="small">XYZ esercizi</p>
+    <ul class="small list-unstyled">
+      <li class="my-2"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">+ esercizio</a></li>
+      <li class="my-2"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">+ lezione</a></li>
+      <li class="my-2"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">+ tema d'esame</a></li>
+    </ul>
+</aside>
+<div class="bd-spacer sticky-xl-top">&nbsp;</div>
+<div class="bd-cheatsheet container-fluid bg-white">
   <router-outlet></router-outlet>
 </div>

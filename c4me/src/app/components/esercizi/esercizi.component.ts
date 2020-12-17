@@ -11,16 +11,32 @@ export class EserciziComponent implements OnInit {
   esercizi : any = [];
   argomenti : any = [];
 
-  constructor(private crudService: CrudService) { }
+  page : Number = 0;
+  count : Number;
+  pageSize = 10;
+
+
+
+  constructor(private crudService: CrudService) {
+  }
 
   ngOnInit(): void {
-    this.crudService.getEsercizi().subscribe(res => {
-      this.esercizi =res;
+    this.crudService.getEsercizi(this.page).subscribe(res => {
+      this.esercizi = res;
+      this.count = 12;
     });
   }
 
-  formatArgomenti(args: string): string {
-    return args.replace(/ /g, ', ').replace(/-/g, ' ');
+  formatArgomentiList(testo: String): String {
+    var strList = '<ul class="list;inline">';
+    strList = strList + '<li class="list;inline;item">';
+    strList = strList + testo.replace(/ /g, '</li><li class="list;inline;item">')
+    strList = strList + '</ul>';
+    return strList.replace(/-/g, ' ').replace(/;/g, '-');
   }
 
+  formatArgomenti(testo: String): String {
+    var strList = testo.replace(/ /g, '; ')
+    return strList.replace(/-/g, ' ');
+  }
 }
