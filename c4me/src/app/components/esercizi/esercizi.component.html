@@ -14,7 +14,7 @@
                       <div class="btn-group">
                         <button class="btn btn-sm btn-outline-secondary" routerLink="/esercizio/{{ex.id}}">Dettagli&nbsp;</button>
                         <button class="btn btn-sm btn-outline-secondary" routerLink="/edit-esercizio/{{ex.id}}">Modifica</button>
-                        <button class="btn btn-sm btn-outline-secondary" (click)="delete(ex.id)">&nbsp;Elimina&nbsp;</button>
+                        <button class="btn btn-sm btn-outline-secondary" (click)="deleteEsercizio(ex.id)">&nbsp;Elimina&nbsp;</button>
                       </div>
                       <small [ngStyle]="{'color': ex.colore}" class="text-muted"># {{i+1}}</small>
                     </div>

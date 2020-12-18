@@ -29,10 +29,22 @@ export class EserciziComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getEserciziSimple();
+  }
+
+  getEserciziSimple(){
     this.crudService.getEsercizi(this.page).subscribe(res => {
       this.esercizi = res;
       console.log(this.page);
 //      this.count = res.count;
+    });
+  }
+
+
+  deleteEsercizio(eid) {
+    console.log("chi elimino" + eid);
+    this.crudService.deleteEsercizio(eid).subscribe(() => {
+      this.getEserciziSimple();
     });
   }
 

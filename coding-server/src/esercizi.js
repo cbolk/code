@@ -19,23 +19,24 @@ function createRouter(db) {
     	);
   });
 
-  router.route('/book').post((req, res, next) => {
-    db.query(
-        'INSERT INTO esercizi (titolo, testo, argomento, colore) VALUES (?,?,?,?)',
-        [req.body.titolo, req.body.testo, req.body.argomento, req.body.colore],
-        (error) => {
-            if (error) {
-              res.status(500).json({status: 'error'});
-            } else {
-              res.status(200).json({status: 'ok'});
-            }
-      })
-  });
-
   router.get('/esercizi', function (req, res, next) {
     db.query(
       'SELECT * FROM esercizi LIMIT 9 OFFSET ?',
       [9*(req.query.page || 0)],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  router.get('/numeroesercizi', function (req, res, next) {
+    db.query(
+      'SELECT COUNT(*) AS NUM FROM esercizi',
       (error, results) => {
         if (error) {
           console.log(error);

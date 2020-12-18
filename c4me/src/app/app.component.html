@@ -1,20 +1,18 @@
 <header class="bd-header py-3 d-flex align-items-stretch">
   <div class="container-fluid d-flex align-items-center">
     <h1 class="d-flex align-items-center fs-4 mb-0">
-      C for Me
+      {{title}}
     </h1>
   </div>
 </header>
 <aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
   <p></p>
-  <p class="small">XYZ esercizi</p>
-    <ul class="small list-unstyled">
-      <li class="my-2"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">+ esercizio</a></li>
-      <li class="my-2"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">+ lezione</a></li>
-      <li class="my-2"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio">+ tema d'esame</a></li>
-    </ul>
+  <p class="small text-uppercase"><i class="icon-file-alt"></i> {{numeroesercizi}} esercizi</p>
+  <p class="small"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio"><i class="icon-plus"></i> nuovo esercizio</a></p>
+  <p class="small"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio"><i class="icon-plus"></i> nuova lezione</a></p>
+  <p class="small"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio"><i class="icon-plus"></i> nuovo tema d'esame</a></p>
 </aside>
-<div class="bd-spacer sticky-xl-top">&nbsp;</div>
+<!--div class="bd-spacer sticky-xl-top">&nbsp;</div-->
 <div class="bd-cheatsheet container-fluid bg-white">
   <router-outlet></router-outlet>
 </div>

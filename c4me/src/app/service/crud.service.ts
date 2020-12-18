@@ -25,6 +25,11 @@ export class CrudService {
 	   return this.httpClient.get(`${this.REST_API}/esercizi?page=${pagenum}`);
   }
 
+  getNumeroEsercizi(){
+    console.log("quanti esercizi??");
+	   return this.httpClient.get(`${this.REST_API}/numeroesercizi`);
+  }
+
   // Esercizio
   //usata??
   getEsercizio(id:any): Observable<any> {
@@ -36,6 +41,8 @@ export class CrudService {
 	  catchError(this.handleError)
 	  )
   }
+
+
   // Esercizio Completo
   getEsercizioCompleto(id:any): Observable<any> {
     let API_URL = `${this.REST_API}/esercizio/${id}/soluzioni`;
@@ -75,7 +82,7 @@ export class CrudService {
   }
   // Delete
   deleteEsercizio(id:any): Observable<any> {
-    let API_URL = `${this.REST_API}/delete-esercizio/${id}`;
+    let API_URL = `${this.REST_API}/esercizio/${id}`;
     return this.httpClient.delete(API_URL, { headers: this.httpHeaders})
     .pipe(
         catchError(this.handleError)

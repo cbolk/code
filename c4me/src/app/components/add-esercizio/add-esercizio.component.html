@@ -1,10 +1,7 @@
-<div class="container">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h3>Nuovo esercizio</h3>
-  </div>
-
-<div class="row justify-content-center mt-5">
-    <div class="col-md-12">
+<div class="album bg-light">
+  <div class="container">
+    <div class="row row-cols-1">
+      <div class="col-md-12">
         <form [formGroup]="esercizioForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label>Titolo</label>
@@ -32,5 +29,5 @@
         </form>
     </div>
   </div>
-
+</div>
 </div>

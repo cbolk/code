@@ -89,7 +89,7 @@ body {
   }
 
   app-root {
-    display: inherit;
+    display: grid;
   }
 
   .bd-header {
@@ -344,6 +344,11 @@ p {
     margin: 0 auto;
     padding: 0 50px;
     z-index: 150;
+}
+
+header h1 {
+  font-variant: small-caps;
+  color: #ffffff;
 }
 
 /* code */
