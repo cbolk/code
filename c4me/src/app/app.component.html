@@ -7,10 +7,12 @@
 </header>
 <aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
   <p></p>
-  <p class="small text-uppercase"><i class="icon-file-alt"></i> {{numeroesercizi}} esercizi</p>
-  <p class="small"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio"><i class="icon-plus"></i> nuovo esercizio</a></p>
-  <p class="small"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio"><i class="icon-plus"></i> nuova lezione</a></p>
-  <p class="small"><a class="nav-link" routerLinkActive="active" routerLink="/add-esercizio"><i class="icon-plus"></i> nuovo tema d'esame</a></p>
+  <p class="small text-uppercase"><i class="icon-file"></i><a routerLinkActive="active" routerLink="/esercizi">{{numeroesercizi}} esercizi</a></p>
+  <p class="small text-uppercase"><i class="icon-comment"></i>&nbsp;&nbsp;{{numerolezioni}} lezioni</p>
+  <p class="small text-uppercase"><i class="icon-bullhorn"></i>&nbsp;&nbsp;{{numeroesami}} appelli d'esame</p>
+  <p class="small"><i class="icon-plus"></i><a routerLinkActive="active" routerLink="/add-esercizio"> nuovo esercizio</a></p>
+  <p class="small"><i class="icon-plus"></i><a routerLinkActive="active" routerLink="/add-esercizio"> nuova lezione</a></p>
+  <p class="small"><i class="icon-plus"></i><a routerLinkActive="active" routerLink="/add-esercizio"> nuovo tema d'esame</a></p>
 </aside>
 <!--div class="bd-spacer sticky-xl-top">&nbsp;</div-->
 <div class="bd-cheatsheet container-fluid bg-white">

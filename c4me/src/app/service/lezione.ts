@@ -3,5 +3,6 @@ export class lezione {
 	data!: Date;
 	annoaccademico!: Number;
 	tipologia!: String;
+	titolo!: String;
   argomento!: String;
 }

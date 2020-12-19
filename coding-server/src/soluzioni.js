@@ -34,6 +34,21 @@ function createRouter(db) {
     );
   });
 
+  router.get('/lezione/:id/soluzioni', function (req, res, next) {
+    db.query(
+      'SELECT soluzioni.* FROM soluzioni INNER JOIN esercizi on soluzioni.esercizifk = esercizi.id INNER JOIN lezioniesercizi on esercizi.id = lezioniesercizi.esercizifk WHERE lezioniesercizi.lezionifk = ?',
+      [req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
   router.get('/soluzione/:id', function (req, res, next) {
     db.query(
       'SELECT * FROM soluzioni WHERE id=?',

@@ -106,6 +106,7 @@ function createRouter(db) {
   		);
 	});
 
+  // soluzioni di un esercizio
   router.get('/esercizio/:id/soluzioni', function (req, res, next) {
     db.query(
       'SELECT * FROM soluzioni WHERE esercizifk=?',

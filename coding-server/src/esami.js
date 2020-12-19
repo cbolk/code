@@ -34,6 +34,20 @@ function createRouter(db) {
     );
   });
 
+  router.get('/numeroesami', function (req, res, next) {
+    db.query(
+      'SELECT COUNT(*) AS NUM FROM esami',
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
   router.get('/esamicompleti', function (req, res, next) {
   db.query(
     'SELECT esami.*, esercizi.* FROM esami INNER JOIN eserciziesame ' +

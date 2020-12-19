@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <blockquote class="blockquote">
+      <h4 class="text-left mb-0" [innerHtml]="lezione.titolo"></h4>
+      <p class="text-right">{{lezione.data | slice:0:10}}</p>
+    </blockquote>
+  </div>
+
+  <div class="row justify-content-center">
+      <div class="col-md-12 pb-2 border-bottom">
+           <div [innerHtml]="lezione.argomento"></div>
+      </div>
+  </div>
+  <div class="row" *ngFor="let e of esercizi; let i = index">
+    <div class="col-md-12 pt-3">
+      <h4>Esercizio {{i+1}}. {{e.titolo}}</h4>
+      <p [innerHtml]="e.testo"></p>
+    </div>
+    <div class="col-md-12" *ngFor="let s of soluzioni">
+      <div *ngIf="s.esercizifk == e.id">
+        <div class="col">
+          <p><strong>Soluzione</strong></p>
+          <div *ngIf="s.daevitare == 0; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock><div class="codeblock"><pre>{{s.codice}}</pre></div></ng-template>
+          <ng-template #elseBlock><div class="bad codeblock"><pre>{{s.codice}}</pre></div></ng-template>
+          <div class="codenote" [innerHtml]="s.note"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

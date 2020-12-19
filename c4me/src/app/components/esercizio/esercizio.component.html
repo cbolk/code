@@ -2,6 +2,7 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <blockquote class="blockquote">
       <h4 class="text-left mb-0">{{esercizio.titolo}}</h4>
+      <h4></h4>
       <footer class="blockquote-footer text-right">#{{esercizio.id}}</footer>
     </blockquote>
   </div>
@@ -12,8 +13,9 @@
              <div [innerHtml]="esercizio.testo"></div>
            </div>
            <div class="lead">
+              <p></p>
               <p><strong>Argomenti:</strong></p>
-              <div [innerHtml]="formatArgomenti(esercizio.argomento)"></div>
+              <p [innerHtml]="formatArgomenti(esercizio.argomento)"></p>
             </div>
       </div>
   </div>
@@ -22,9 +24,10 @@
       <h4>Soluzioni</h4>
     </div>
     <div class="col-md-12" *ngFor="let s of soluzioni; let i = index">
-      <p>#{{i+1}}</p>
+      <p class="text-right">#{{i+1}}</p>
       <pre class='hljs'>{{s.codice}}</pre>
       <div [innerHtml]="s.note"></div>
+      <p>&nbsp;</p>
     </div>
   </div>
 </div>
