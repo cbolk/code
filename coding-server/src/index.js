@@ -7,6 +7,8 @@ const esercizi = require('./esercizi');
 const esami = require('./esami');
 const lezioni = require('./lezioni');
 const soluzioni = require('./soluzioni');
+const recharge = require('./recharge');
+const attivita = require('./attivita');
 
 const connection = mysql.createConnection({
   host     : 'localhost',
@@ -26,7 +28,9 @@ const app = express()
   .use(esercizi(connection))
   .use(esami(connection))
   .use(lezioni(connection))
-  .use(soluzioni(connection));
+  .use(soluzioni(connection))
+  .use(attivita(connection))
+  .use(recharge());
 
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);

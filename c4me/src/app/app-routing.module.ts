@@ -7,10 +7,12 @@ import { AddEsercizioComponent } from './components/add-esercizio/add-esercizio.
 import { EditEsercizioComponent } from './components/edit-esercizio/edit-esercizio.component';
 import { AddLezioneComponent } from './components/add-lezione/add-lezione.component';
 import { LezioneComponent } from './components/lezione/lezione.component';
+import { AttivitaComponent } from './components/attivita/attivita.component';
 
 
 const routes: Routes = [
-//  { path: '', pathMatch: 'full', redirectTo: 'esercizi' },
+//{ path: '', pathMatch: 'full', redirectTo: 'esercizi' },
+{ path: 'attivita', component: AttivitaComponent },
 { path: 'esercizi', component: EserciziComponent },
 { path: 'esercizio/:id', component: EsercizioComponent },
 { path: 'add-esercizio', component: AddEsercizioComponent },

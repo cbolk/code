@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { esercizio } from './esercizio';
 import { lezione } from './lezione';
+import { attivita } from './attivita';
 
 
 @Injectable({
@@ -169,7 +170,54 @@ export class CrudService {
       )
   }
 
+  getAllAttivita(): Observable<any> {
+    let API_URL = `${this.REST_API}/attivita/`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+    .pipe(map((res: any) => {
+       return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
 
+  getAttivitaAnno(ianno:any): Observable<any> {
+    let API_URL = `${this.REST_API}/attivita/${ianno}`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+    .pipe(map((res: any) => {
+       return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  addAttivita(data: attivita): Observable<any> {
+    let API_URL = `${this.REST_API}/attivita`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Update
+  updateAttivita(id:any, data:any): Observable<any> {
+    let API_URL = `${this.REST_API}/attivita/${id}`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+  // Delete
+  deleteAttivita(id:any): Observable<any> {
+    let API_URL = `${this.REST_API}/attivita/${id}`;
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders})
+    .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  getNumeroAttivita(){
+     return this.httpClient.get(`${this.REST_API}/numeroattivita`);
+  }
 
   handleError(error: HttpErrorResponse){
     let errorMessage = '';

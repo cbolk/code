@@ -7,14 +7,44 @@
 </header>
 <aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
   <p></p>
-  <p class="small text-uppercase"><i class="icon-file"></i><a routerLinkActive="active" routerLink="/esercizi">{{numeroesercizi}} esercizi</a></p>
-  <p class="small text-uppercase"><i class="icon-comment"></i>&nbsp;&nbsp;{{numerolezioni}} lezioni</p>
+  <p class="small text-uppercase"><i class="icon-file"></i><a routerLinkActive="active" routerLink="/esercizi"> {{numeroesercizi}} esercizi</a></p>
+  <p class="small text-uppercase"><i class="icon-comment"></i>&nbsp;&nbsp;{{numeroattivita}} attivit&agrave;</p>
   <p class="small text-uppercase"><i class="icon-bullhorn"></i>&nbsp;&nbsp;{{numeroesami}} appelli d'esame</p>
   <p class="small"><i class="icon-plus"></i><a routerLinkActive="active" routerLink="/add-esercizio"> nuovo esercizio</a></p>
-  <p class="small"><i class="icon-plus"></i><a routerLinkActive="active" routerLink="/add-esercizio"> nuova lezione</a></p>
+  <p class="small"><i class="icon-plus"></i><a routerLinkActive="active" routerLink="/add-esercizio"> nuova attivita</a></p>
   <p class="small"><i class="icon-plus"></i><a routerLinkActive="active" routerLink="/add-esercizio"> nuovo tema d'esame</a></p>
 </aside>
 <!--div class="bd-spacer sticky-xl-top">&nbsp;</div-->
 <div class="bd-cheatsheet container-fluid bg-white">
+  <h1>attivit&agrave; {{aacorso}}-{{aacorso+1}}</h1>
+    <div class="container page-content">
+      <div class="row">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">Tipologia</th>
+              <th scope="col">Titolo</th>
+              <th scope="col">Argomento</th>
+              <th scope="col">Ordine</th>
+              <th scope="col">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let a of attivita; let i = index" [class.active]="i == currentIndex">
+                <td>{{a.data | date:'dd MMMM yyyy'}}</td>
+                <td>{{a.tipologia}}</td>
+                <td>{{a.titolo}}</td>
+                <td>{{a.argomento}}</td>
+                <td>{{a.numero}}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-secondary" (click)="editAttivita(i, eventmodal)">Modifica</button>
+                        <button class="btn btn-sm btn-outline-secondary" (click)="deleteAttivita(i)">&nbsp;Elimina&nbsp;</button>
+                </td>
+              </tr>
+            </tbody>
+          </table><!-- chiude css-grid-table --> 
+      </div>
+    </div>
   <router-outlet></router-outlet>
 </div>

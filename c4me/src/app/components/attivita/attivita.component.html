@@ -1,0 +1,81 @@
+  <div class="album bg-light">
+    <div class="container page-content">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-primary" (click)="addAttivita(eventmodal)"><i class="fa fa-plus"></i> Aggiungi</button>
+        </div>
+      </div>
+      <div class="row">
+          <div class="css-grid-table">
+            <div class="css-grid-table-header">
+              <div>Data</div>
+              <div>Tipologia</div>
+              <div>Titolo</div>
+              <div>Argomento</div>
+              <div>Ordine</div>
+              <div>&nbsp;</div>
+            </div>
+            <div class="css-grid-table-body">
+              <div class="css-grid-table-row" *ngFor="let a of attivita; let i = index" [class.active]="i == currentIndex">
+                <div>{{a.data}}</div>
+                <div>{{a.tipologia}}</div>
+                <div>{{a.titolo}}</div>
+                <div>{{a.argomento}}</div>
+                <div>{{a.numero}}</div>
+                <div>
+                  <button class="btn btn-sm btn-outline-secondary" (click)="editAttivita(i, eventmodal)">Modifica</button>
+                        <button class="btn btn-sm btn-outline-secondary" (click)="deleteAttivita(i)">&nbsp;Elimina&nbsp;</button>
+                </div>
+              </div>
+            </div><!-- chiude css-grid-table-body --> 
+          </div><!-- chiude css-grid-table --> 
+      </div>
+    </div>
+  </div>
+
+
+<ng-template #eventmodal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Attivita</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="attivitaForm" (ngSubmit)="onSubmit()">
+      <div class="form-group full-width-input">
+        <label>Data</label>
+        <input class="form-control" formControlName="dataAttivita" bsDatepicker>
+      </div>
+      <div class="form-group full-width-input">
+        <label>Tipologia</label>
+        <!-- sostituire con i valori della tabella tipologiaattivita -->
+        <select id="tipologia" name="tipologia">
+            <option value="1">lezione</option>
+            <option value="2">esercitazione</option>
+            <option value="3">analisi soluzioni</option>
+            <option value="4">laboratorio</option>
+            <option value="5">esame</option>
+            <option value="6">esercizio proposto</option>
+            <option value="7">altro</option>
+        </select>
+      </div>
+      <div class="form-group full-width-input">
+        <label>Titolo</label>
+        <input class="form-control" placeholder="(titolo)" formControlName="titolo" required>
+      </div>
+      <div class="form-group full-width-input">
+        <label>Argomento</label>
+        <textarea cols="40" rows="10" class="form-control" formControlName="argomento" required></textarea>
+      </div>
+      <div class="form-group full-width-input">
+        <label>Ordine</label>
+        <input class="form-control" placeholder="-1" formControlName="numero" required>
+      </div>
+      <div class="button-row">
+        <button type="button" class="btn btn-primary" (click)="modalCallback()">Aggiungi</button>
+        <button type="button" class="btn btn-light" (click)="onCancel()">Cancella</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
