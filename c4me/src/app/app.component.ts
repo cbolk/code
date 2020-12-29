@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { CrudService } from './service/crud.service';
-import localeIt from '@angular/common/locales/it';
-import { formatDate } from '@angular/common';
 
-registerLocaleData(localeIt);
 
 @Component({
   selector: 'app-root',
@@ -61,8 +58,36 @@ export class AppComponent { //implements OnInit {
 
   getAttivitaAnnoInCorso(){
     this.crudService.getAttivitaAnno(this.aacorso).subscribe(res => {
-      this.attivita = res;
+      this.attivita = res.map((a) => {
+        if (a.titolo != null)
+          a.titolo = a.titolo.replace(/code/g,"tt");
+        if (a.argomento != null)
+          a.argomento = a.argomento.replace(/code/g,"tt");
+        if (a.cb == 1)
+          a.chi = 'far fa-user-circle';
+        else
+          a.chi = 'fas fa-user-circle';
+        a.data = a.data;
+        a.ore = a.ore;
+        if(a.tipologia == 'lezione')
+          a.classe = 'text-primary';
+        else if (a.tipologia == 'esercitazione' || a.tipologia == 'analisi')
+          a.classe = 'text-success';
+        else if (a.tipologia == 'laboratorio')
+          a.classe = 'text-info';
+        else if (a.tipologia == 'sospensione')
+          a.classe = 'text-danger';
+        else if (a.tipologia == 'esame')
+          a.classe = 'text-secondary';
+        else
+          a.classe = 'text-warning';
+
+        a.tipologia = a.tipologia;
+        return a;
+      });
     });
   }
+
+
 
 }
