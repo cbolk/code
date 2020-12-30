@@ -1,81 +1,59 @@
-  <div class="album bg-light">
-    <div class="container page-content">
-      <div class="row">
-        <div class="col-md-12">
-          <button type="button" class="btn btn-primary" (click)="addAttivita(eventmodal)"><i class="fa fa-plus"></i> Aggiungi</button>
-        </div>
-      </div>
-      <div class="row">
-          <div class="css-grid-table">
-            <div class="css-grid-table-header">
-              <div>Data</div>
-              <div>Tipologia</div>
-              <div>Titolo</div>
-              <div>Argomento</div>
-              <div>Ordine</div>
-              <div>&nbsp;</div>
-            </div>
-            <div class="css-grid-table-body">
-              <div class="css-grid-table-row" *ngFor="let a of attivita; let i = index" [class.active]="i == currentIndex">
-                <div>{{a.data}}</div>
-                <div>{{a.tipologia}}</div>
-                <div>{{a.titolo}}</div>
-                <div>{{a.argomento}}</div>
-                <div>{{a.numero}}</div>
-                <div>
-                  <button class="btn btn-sm btn-outline-secondary" (click)="editAttivita(i, eventmodal)">Modifica</button>
-                        <button class="btn btn-sm btn-outline-secondary" (click)="deleteAttivita(i)">&nbsp;Elimina&nbsp;</button>
-                </div>
-              </div>
-            </div><!-- chiude css-grid-table-body --> 
-          </div><!-- chiude css-grid-table --> 
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="modal-title text-primary">Attivit&agrave; {{aacorso}}-{{(aacorso+1).toString() | slice:2:4}}</h4>
+    </div>    
+  </div>
+  <div class="row">
+    <div class="col-10">
+            <p><span class='text-primary'>lezione</span>
+              &#11046; <span class='text-success'>esercitazione</span>
+              &#11046; <span class='text-info'>laboratorio</span>
+              &#11046; <span class='text-warning'>altro</span>
+              &#11046; <span class='text-secondary'>esame</span>
+              &#11046; <span class='text-danger'>sospensione</span>&nbsp;&nbsp;&nbsp;
+            </p>
+    </div>
+    <div class="col-2">
+            <p>
+                    <i class="far fa-plus-square"></i>&nbsp;&nbsp;nuova attivit&agrave;
+            </p>
     </div>
   </div>
-
-
-<ng-template #eventmodal>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Attivita</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div class="row">
+    <div class="col-12">
+            <p><i class="far fa-user-circle"></i> CB&nbsp;&nbsp;
+                <i class="fas fa-user-circle"></i>
+            </p>
+    </div>
   </div>
-  <div class="modal-body">
-    <form [formGroup]="attivitaForm" (ngSubmit)="onSubmit()">
-      <div class="form-group full-width-input">
-        <label>Data</label>
-        <input class="form-control" formControlName="dataAttivita" bsDatepicker>
-      </div>
-      <div class="form-group full-width-input">
-        <label>Tipologia</label>
-        <!-- sostituire con i valori della tabella tipologiaattivita -->
-        <select id="tipologia" name="tipologia">
-            <option value="1">lezione</option>
-            <option value="2">esercitazione</option>
-            <option value="3">analisi soluzioni</option>
-            <option value="4">laboratorio</option>
-            <option value="5">esame</option>
-            <option value="6">esercizio proposto</option>
-            <option value="7">altro</option>
-        </select>
-      </div>
-      <div class="form-group full-width-input">
-        <label>Titolo</label>
-        <input class="form-control" placeholder="(titolo)" formControlName="titolo" required>
-      </div>
-      <div class="form-group full-width-input">
-        <label>Argomento</label>
-        <textarea cols="40" rows="10" class="form-control" formControlName="argomento" required></textarea>
-      </div>
-      <div class="form-group full-width-input">
-        <label>Ordine</label>
-        <input class="form-control" placeholder="-1" formControlName="numero" required>
-      </div>
-      <div class="button-row">
-        <button type="button" class="btn btn-primary" (click)="modalCallback()">Aggiungi</button>
-        <button type="button" class="btn btn-light" (click)="onCancel()">Cancella</button>
-      </div>
-    </form>
+  <div class="row">
+    <div class="col-12">
+              <table class="table table-sm">
+              <thead>
+              <tr>
+                <th scope="col">data</th>
+                <th scope="col" width="380px">argomento</th>
+                <th scope="col" width="550px">dettaglio</th>
+                <th scope="col" width="40px">ore</th>
+                <th scope="col" width="40px">chi</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let a of attivita; let i = index" [class.active]="i == currentIndex">
+                  <td class="day {{a.classe}}">{{a.data | date:'dd&nbsp;MMM&nbsp;yyyy'}}</td>
+                  <td class='topic {{a.classe}}' [innerHtml]="a.titolo"></td>
+                  <td class='detail {{a.classe}}'[innerHtml]="a.argomento"></td>
+                  <td class='{{a.classe}}'>{{a.ore}}</td>
+                  <td class='ico'><i class="{{a.chi}}"></i></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-secondary" (click)="editAttivita(i, eventmodal)"><i class="far fa-edit"></i></button></td>
+                  <td><button class="btn btn-sm btn-outline-secondary" (click)="deleteAttivita(i)"><i class="far fa-trash-alt"></i></button></td>
+                </tr>
+              </tbody>
+            </table><!-- chiude css-grid-table --> 
+    </div>
   </div>
-</ng-template>
+</div>

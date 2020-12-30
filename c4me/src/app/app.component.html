@@ -16,45 +16,5 @@
 </aside>
 <!--div class="bd-spacer sticky-xl-top">&nbsp;</div-->
 <div class="bd-cheatsheet container-fluid bg-white">
-  <div class="">
-    <h3>Attivit&agrave; {{aacorso}}-{{(aacorso+1).toString() | slice:2:4}}</h3>
-    <h4 class='fright'><i class="far fa-plus-square"></i></h4>
-          <p><span class='text-primary'>lezione</span>
-            &#11046; <span class='text-success'>esercitazione</span>
-            &#11046; <span class='text-info'>laboratorio</span>
-            &#11046; <span class='text-warning'>altro</span>
-            &#11046; <span class='text-secondary'>esame</span>
-            &#11046; <span class='text-danger'>sospensione</span>&nbsp;&nbsp;&nbsp;
-          </p>
-          <p><i class="far fa-user-circle"></i> CB&nbsp;&nbsp;
-              <i class="fas fa-user-circle"></i> GD
-          </p>
-
-            <table class="table table-sm">
-            <thead>
-            <tr>
-              <th scope="col">data</th>
-              <th scope="col" width="380px">argomento</th>
-              <th scope="col" width="550px">dettaglio</th>
-              <th scope="col" width="40px">ore</th>
-              <th scope="col" width="40px">chi</th>
-              <th scope="col">&nbsp;</th>
-              <th scope="col">&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let a of attivita; let i = index" [class.active]="i == currentIndex">
-                <td class="day {{a.classe}}">{{a.data | date:'dd&nbsp;MMM&nbsp;yyyy'}}</td>
-                <td class='topic {{a.classe}}' [innerHtml]="a.titolo"></td>
-                <td class='detail {{a.classe}}'[innerHtml]="a.argomento"></td>
-                <td class='{{a.classe}}'>{{a.ore}}</td>
-                <td class='ico'><i class="{{a.chi}}"></i></td>
-                <td>
-                  <button class="btn btn-sm btn-outline-secondary" (click)="editAttivita(i, eventmodal)"><i class="far fa-edit"></i></button></td>
-                <td><button class="btn btn-sm btn-outline-secondary" (click)="deleteAttivita(i)"><i class="far fa-trash-alt"></i></button></td>
-              </tr>
-            </tbody>
-          </table><!-- chiude css-grid-table --> 
-    </div>
   <router-outlet></router-outlet>
 </div>

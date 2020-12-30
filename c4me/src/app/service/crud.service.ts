@@ -22,8 +22,12 @@ export class CrudService {
   //Esercizi
   //
   // Lista
-  getEsercizi(pagenum:Number = 0){
-	   return this.httpClient.get(`${this.REST_API}/esercizi?page=${pagenum}`);
+  getEsercizi(pagenum:any){
+    if(pagenum)
+	     return this.httpClient.get(`${this.REST_API}/esercizi?page=${pagenum}`);
+    
+    return this.httpClient.get(`${this.REST_API}/esercizi`);
+
   }
 
   getNumeroEsercizi(){
@@ -182,6 +186,7 @@ export class CrudService {
 
   getAttivitaAnno(ianno:any): Observable<any> {
     let API_URL = `${this.REST_API}/attivita/${ianno}`;
+    console.log(API_URL);
     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
     .pipe(map((res: any) => {
        return res || {}

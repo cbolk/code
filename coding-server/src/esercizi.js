@@ -20,9 +20,14 @@ function createRouter(db) {
   });
 
   router.get('/esercizi', function (req, res, next) {
+    if(req.query.page) {
+      console.log("ok " + 9*req.query.page);
+      SQLQRY = 'SELECT * FROM esercizi LIMIT 9 OFFSET ' + 9*req.query.page;//+ toString(9*parseInt(req.query.page));
+    } else {
+      SQLQRY = 'SELECT * FROM esercizi';
+    }
     db.query(
-      'SELECT * FROM esercizi LIMIT 9 OFFSET ?',
-      [9*(req.query.page || 0)],
+      SQLQRY,
       (error, results) => {
         if (error) {
           console.log(error);

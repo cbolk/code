@@ -1,34 +1,35 @@
+<div class="fluid-container">
   <div class="album bg-light">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" *ngFor="let ex of esercizi | paginate: { id: 'foo',
-                                                      itemsPerPage: pageSize,
-                                                      currentPage: p,
-                                                      totalItems: count };
-                let i = index" [class.active]="i == currentIndex">
-                <div class="card">
-                  <div class="card-header">{{ex.titolo}}</div>
-                  <div class="card-body">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+       <div class="col" *ngFor="let ex of filteredEsercizi; let i = index" [class.active]="i == currentIndex">
+          <div class="card">
+              <div class="card-header">{{ex.titolo}}</div>
+              <div class="card-body">
                     <p class="card-text" [innerHtml]="ex.testo.slice(0, 600)+(ex.testo.length > 600 ? '...' : '')"></p>
                     <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button class="btn btn-sm btn-outline-secondary" routerLink="/esercizio/{{ex.id}}">Dettagli&nbsp;</button>
-                        <button class="btn btn-sm btn-outline-secondary" routerLink="/edit-esercizio/{{ex.id}}">Modifica</button>
-                        <button class="btn btn-sm btn-outline-secondary" (click)="deleteEsercizio(ex.id)">&nbsp;Elimina&nbsp;</button>
-                      </div>
-                      <small [ngStyle]="{'color': ex.colore}" class="text-muted"># {{i+1}}</small>
+                        <div class="btn-group">
+                          <button class="btn btn-sm btn-outline-secondary" routerLink="/esercizio/{{ex.id}}">Dettagli&nbsp;</button>
+                          <button class="btn btn-sm btn-outline-secondary" routerLink="/edit-esercizio/{{ex.id}}">Modifica</button>
+                          <button class="btn btn-sm btn-outline-secondary" (click)="deleteEsercizio(ex.id)">&nbsp;Elimina&nbsp;</button>
+                        </div>
+                        <small [ngStyle]="{'color': ex.colore}" class="text-muted"># {{i+1}}</small>
                     </div>
-                  </div>
-                  <div class="card-footer">{{formatArgomenti(ex.argomento)}}</div>
+              </div>
+              <div class="card-footer">{{formatArgomenti(ex.argomento)}}</div>
+          </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center">
-       <pagination-controls
-         responsive="true"
-         previousLabel="Prev"
-         nextLabel="Next"
-         (pageChange)="onTableDataChange($event)">
-       </pagination-controls>
+      <div class="row">
+        <nav aria-label="...">
+          <ul class="pagination pagination-sm">
+            <li class="page-item"><a routerLink="/esercizi/#" ng-click="onPageChange(1)">&laquo;</a></li>
+            <li class="page-item" *ngFor="let item of pagerArray; let j = index" ng-class="item.id === currentPage ? 'active':''">
+              <button ng-click="onPageChange(item.id)">{{item.id}}</button></li>
+            <li class="page-item"><button ng-click="onPageChange(pagerArray.length)">&raquo;</button></li>
+          </ul>
+        </nav>
       </div>
-    </div>
   </div>
+</div>
+
+    

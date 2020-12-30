@@ -1,31 +1,43 @@
-.css-grid-table,
-.css-grid-table-header,
-.css-grid-table-body {
-display: grid;
+/* classes */
+.lilez {
+    border-left: 3px solid #2412B2;
+    padding-left: 6px;
+}
+.liexe {
+    border-left: 3px solid #1B960F;
+    padding-left: 6px;
+}
+.lilab {
+    border-left: 3px solid #E1536A;
+    padding-left: 6px;
 }
 
-.css-grid-table {
-grid-template-rows: 24px 72px;
-width: 80%;
+.gridplan{
+  display: table;
+  width: 100%;
+  border-spacing:.5em;
 }
 
-.css-grid-table-header,
-.css-grid-table-body {
-grid-template-columns: auto auto auto minmax(150px, 25%);
-line-height: 24px; 
-}
+.planentry{display: table-row;}
+ .day {
+ 	font-size: 0.9rem;
+    padding:0.5em;
+    width:10%;
+    display:table-cell;
+  }
+ .topic, .detail {
+ 	font-size: 0.9rem;
+    padding:0.5em;
+    width:30%;
+    display:table-cell;
+  }
+ .detail {
+    width:50%;
+  }
+ .ico {
+ 	padding-top: 0.3em;
+ }
 
-.css-grid-table-header {
-grid-column-gap: 2px;
-grid-template-rows: auto;
-}
-
-.css-grid-table-body {
-grid-template-rows: auto auto auto;
-}
-
-.css-grid-table-header div {
-text-align: center;
-font-weight: bold;
-background-color: rgb(191, 191, 191);
-}
+ .fright {
+ 	float: right;
+ }

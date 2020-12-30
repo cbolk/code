@@ -10,36 +10,50 @@ import { CrudService } from './../../service/crud.service';
 export class EserciziComponent implements OnInit {
 
   esercizi : any = [];
+  filteredEsercizi : any = [];
   argomenti : any = [];
 
-  page : Number = 0;
-  count : Number;
-  pageSize = 10;
-
-
+  page = 0;
+  currentPage = 1;
+  numPerPage = 9;
+  numEsercizi : Number;
+  numEx : Number;
+  pagers : Number;
+  pagerArray : any = [];
 
   constructor(
       private router: Router,
       private activatedRoute: ActivatedRoute,
       private crudService: CrudService
-    ) {
-    this.activatedRoute.queryParams.subscribe(params => {
-        this.page = params['page'];
-    });
+  ) {
+    this.getEserciziSimple();
   }
 
   ngOnInit(): void {
-    this.getEserciziSimple();
   }
 
   getEserciziSimple(){
     this.crudService.getEsercizi(this.page).subscribe(res => {
       this.esercizi = res;
-      console.log(this.page);
-//      this.count = res.count;
+      this.numEsercizi = this.esercizi.length;
+      if (this.numEsercizi > this.numPerPage) {
+        this.pagers = Math.floor(this.numEsercizi / this.numPerPage);
+      } else {
+        this.pagers = 1
+      }
+      for (var i = 1; i <= this.pagers; i++) {
+          this.pagerArray.push({
+            id: i
+        });
+      }
+      this.filteredEsercizi = this.esercizi.slice(0, this.numPerPage);
+//      console.log(this.numEsercizi);
+//      console.log(this.pagers);
+//      console.log(this.pagerArray);
+//      console.log(this.filteredEsercizi);
+      console.log(this.currentPage);
     });
   }
-
 
   deleteEsercizio(eid) {
     console.log("chi elimino" + eid);
@@ -59,5 +73,17 @@ export class EserciziComponent implements OnInit {
   formatArgomenti(testo: String): String {
     var strList = testo.replace(/ /g, '; ')
     return strList.replace(/-/g, ' ');
+  }
+
+  onPageChange (pageNumber: Number) {
+    console.log(pageNumber);
+    this.currentPage = pageNumber;
+
+    //Set begin and end index
+    var begin = ((this.currentPage - 1) * this.numPerPage);
+    var end = begin + this.numPerPage;
+
+    //perform the paging
+    this.filteredEsercizi = this.esercizi.slice(begin, end);
   }
 }
