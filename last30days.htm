@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Il tempo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.15/c3.min.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.15/c3.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row text-center">
+			<div class="col">
+				<h2 class="text-center">il meteo <i class="fas fa-cloud-sun"  style="color:#0077B6;"></i></h2>
+				<p><span id='from'></span> - <span id='to'></span></p>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col">
+				<div id="chart" style="height: 400px; width: 100%;"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		window.onload = function (jdata) {
+			var today = new Date();
+			var theday = today.toISOString().split('T')[0].replace(/-/g,'');
+			var link = "http://192.168.1.99:8080/meteo/last30days/" + theday;
+			$.getJSON(link, function (json) {
+				$('#from').html(json[0].ts.toLocaleString().substr(0,10));
+				$('#to').html(json[json.length-1].ts.toLocaleString().substr(0,10)); 
+				var dataPointsT = ['temperatura'];
+				var dataPointsU = ['umidita'];
+				var dataPointsR = ['precipitazioni'];
+				var timelabels = ['x']
+
+				for(var i = 0; i < json.length; i++){
+					dataPointsT.push(json[i].temp);
+					dataPointsU.push(json[i].urel);
+					dataPointsR.push(json[i].prec);
+					timelabels.push(new Date(json[i].ts).toLocaleString().replace(',',''));
+				}
+//				console.log(json);
+				var chart = c3.generate({
+				    bindto: '#chart',
+					data: {
+					      url: link,
+					      mimeType: 'json',
+					      keys: {
+					          x: 'ts',
+					          value: ["temp", "urel", "prec"]
+					      },
+					      xFormat: '%Y-%m-%dT%H:%M:%S.000Z',
+					      axes: {
+					        urel: 'y2' // ADD
+					      },
+					      types: {
+					        prec: 'bar', // ADD
+					        temp: 'spline',
+					        urel: 'spline'					      	
+					      },
+					      colors: {
+					        prec: '#48CAE4',
+					        temp: '#0077B6',
+					        urel: '#40916C'
+					      },
+					      names: {
+						    prec: 'precipitazioni',
+						    urel: 'umidità',
+						    temp: 'temperatura'
+						  }
+					  },point: {
+        show: false
+    },				    
+				    axis: {
+				      x: {
+				            type: 'timeseries',
+				            tick: {
+				            	rotate: -90,
+				                format: '%d-%m-%Y %H:%M'
+				            }
+				        },
+				      y: {
+				      	max: 35,
+				        min: -5,
+				        padding: {top: 0, bottom: 0},
+				        label: { // ADD
+				          text: 'Temperatura (˚C)',
+				          position: 'middle'
+				        }
+				      },
+				      y2: {
+				        show: true,
+				      	max: 100,
+				        min: 1,
+				        padding: {top: 0, bottom: 0},
+				        label: { // ADD
+				          text: 'Umidità (%)',
+				          position: 'outer-middle'
+				        }
+				      }
+				    }
+				});
+		});
+		}
+	</script>
+    </body>
+</html>
+
+
