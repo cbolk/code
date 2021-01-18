@@ -30,6 +30,13 @@
 			var today = new Date();
 			var theday = today.toISOString().split('T')[0].replace(/-/g,'');
 			var link = "http://192.168.1.99:8080/meteo/week/" + theday;
+
+			  const conditions = [
+    { name: "Snow", color: "#74ccfa", emoji: "❄️" },
+    { name: "Rain", color: "#6786db", emoji: "☔" },
+    { name: "Sunny", color: "#fcd92c", emoji: "☀️" }
+  ];
+  
 			$.getJSON(link, function (json) {
 				$('#from').html(json[0].ts.toLocaleString().substr(0,10));
 				$('#to').html(json[json.length-1].ts.toLocaleString().substr(0,10)); 
