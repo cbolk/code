@@ -1,4 +1,4 @@
-export class attivita {
+export class event {
 	id!: Number;
 	data!: Date;
 	annoaccademico!: Number;

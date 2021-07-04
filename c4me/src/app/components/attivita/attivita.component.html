@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-12">
       <h4 class="modal-title text-primary">Attivit&agrave; {{aacorso}}-{{(aacorso+1).toString() | slice:2:4}}</h4>
-      <i class="far fa-plus-square fa-2x fa-pull-right fa-border" style="margin-right:0px;"></i>nuova attivit&agrave;
     </div>    
   </div>
   <div class="row">
@@ -10,16 +9,21 @@
             <p><span class='text-primary'>lezione</span>
               &#11046; <span class='text-success'>esercitazione</span>
               &#11046; <span class='text-info'>laboratorio</span>
-              &#11046; <span class='text-warning'>altro</span>
+              &#11046; <span class='text-warning'>analisi esercizi</span>
               &#11046; <span class='text-secondary'>esame</span>
               &#11046; <span class='text-danger'>sospensione</span>&nbsp;&nbsp;&nbsp;
+            </p>
+    </div>
+    <div class="col-2">
+            <p>
+                    <i class="far fa-plus-square"></i>&nbsp;&nbsp;nuova attivit&agrave;
             </p>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
             <p><i class="far fa-user-circle"></i> CB&nbsp;&nbsp;
-                <i class="fas fa-user-circle"></i>
+                <i class="fas fa-user-circle"></i> TA&nbsp;&nbsp;
             </p>
     </div>
   </div>
@@ -33,8 +37,8 @@
                 <th scope="col" width="550px">dettaglio</th>
                 <th scope="col" width="40px">ore</th>
                 <th scope="col" width="40px">chi</th>
-                <th scope="col">&nbsp;</th>
-                <th scope="col">&nbsp;</th>
+                <th scope="col" colspan="2">modifica</th>
+                <!--th scope="col">&nbsp;</th-->
               </tr>
             </thead>
             <tbody>

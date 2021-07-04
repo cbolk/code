@@ -14,11 +14,11 @@ export class EserciziComponent implements OnInit {
   argomenti : any = [];
 
   page = 0;
-  currentPage = 1;
-  numPerPage = 9;
-  numEsercizi : Number;
-  numEx : Number;
-  pagers : Number;
+  currentPage : any = 1;
+  numPerPage : number = 9;
+  numEsercizi : number;
+  numEx : number;
+  pagers : number;
   pagerArray : any = [];
 
   constructor(

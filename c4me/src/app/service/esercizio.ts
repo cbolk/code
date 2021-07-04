@@ -4,4 +4,5 @@ export class esercizio {
 	testo!: String;
 	argomento!: String;
 	colore!: String;
+	numeroSoluzioni!: Number;
 }

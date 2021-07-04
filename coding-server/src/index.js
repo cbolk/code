@@ -10,6 +10,7 @@ const soluzioni = require('./soluzioni');
 const recharge = require('./recharge');
 const attivita = require('./attivita');
 const meteo = require('./meteo');
+const events = require('./events');
 
 const codingConn = mysql.createConnection({
   host     : 'localhost',
@@ -39,6 +40,7 @@ const app = express()
   .use(lezioni(codingConn))
   .use(soluzioni(codingConn))
   .use(attivita(codingConn))
+  .use(events(codingConn))
   .use(meteo(monitorConn))
   .use(recharge());
 

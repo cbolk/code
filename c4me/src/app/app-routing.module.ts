@@ -8,10 +8,12 @@ import { EditEsercizioComponent } from './components/edit-esercizio/edit-eserciz
 import { AddLezioneComponent } from './components/add-lezione/add-lezione.component';
 import { LezioneComponent } from './components/lezione/lezione.component';
 import { AttivitaComponent } from './components/attivita/attivita.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 
 const routes: Routes = [
 //{ path: '', pathMatch: 'full', redirectTo: 'esercizi' },
+{ path: 'timeline/:idanno', component: TimelineComponent },
 { path: 'attivita', component: AttivitaComponent },
 { path: 'esercizi', component: EserciziComponent },
 { path: 'esercizio/:id', component: EsercizioComponent },

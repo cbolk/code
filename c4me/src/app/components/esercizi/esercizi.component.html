@@ -6,6 +6,7 @@
               <div class="card-header">{{ex.titolo}}</div>
               <div class="card-body">
                     <p class="card-text" [innerHtml]="ex.testo.slice(0, 600)+(ex.testo.length > 600 ? '...' : '')"></p>
+                    <p class="small">Numero soluzioni: <span class="badge bg-secondary">4</span></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <button class="btn btn-sm btn-outline-secondary" routerLink="/esercizio/{{ex.id}}">Dettagli&nbsp;</button>

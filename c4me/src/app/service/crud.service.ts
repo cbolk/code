@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import { esercizio } from './esercizio';
 import { lezione } from './lezione';
 import { attivita } from './attivita';
+import { event } from './event';
 
 
 @Injectable({
@@ -105,6 +106,7 @@ export class CrudService {
 	  catchError(this.handleError)
 	  )
   }
+
 
   //
   // lezioni
@@ -223,6 +225,39 @@ export class CrudService {
   getNumeroAttivita(){
      return this.httpClient.get(`${this.REST_API}/numeroattivita`);
   }
+
+  //Timeline
+  getEvents() {
+    return this.httpClient.get(`${this.REST_API}/event`);
+  }
+
+  getThisYearTimeline() {
+    return this.httpClient.get(`${this.REST_API}/event`);
+  }
+
+  getEventsYear(ianno:any) {
+    let API_URL = `${this.REST_API}/event/${ianno}`;
+    console.log(API_URL);
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+    .pipe(map((res: any) => {
+       return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  createEvent(event) {
+    return this.httpClient.post(`${this.REST_API}/event`, event);
+  }
+
+  updateEvent(event) {
+    return this.httpClient.put(`${this.REST_API}/event/${event.id}`, event);
+  }
+
+  deleteEvent(event) {
+    return this.httpClient.delete(`${this.REST_API}/event/${event.id}`);
+  }  
+
 
   handleError(error: HttpErrorResponse){
     let errorMessage = '';

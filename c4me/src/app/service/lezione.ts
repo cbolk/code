@@ -4,5 +4,7 @@ export class lezione {
 	annoaccademico!: Number;
 	tipologia!: String;
 	titolo!: String;
-  argomento!: String;
+  	argomento!: String;
+  	numeroesercizi!: Number;
+  	isme!: Number;
 }

@@ -3,16 +3,25 @@ const express = require('express');
 function createRouter(db) {
   const router = express.Router();
 
-  router.post('/attivita', (req, res, next) => {
-    var actDate = Date(req.body.data);
-    var aacorso = actDate.getFullYear();
-    var nuovoaa = new Date(aacorso + '-09-15');
-    var nuovoa = new Date(aacorso + '-01-01');
-    if (oggi < nuovoaa && oggi >= nuovoa)
-      aacorso = aacorso - 1;
+  router.post('/event', (req, res, next) => {
+    var aacorso = req.body.data.substring(0, 4);
+    // db.query(
+    //   'SELECT max(numero) as last FROM attivita WHERE annoaccademico = ?',
+    //   [aacorso],
+    //   (error, results) => {
+    //     if (error) {
+    //       console.log(error);
+    //       res.status(500).json({status: 'error'});
+    //     } else {
+    //       console.log(results[0].last);
+    //       lastnumero = -5;
+    //       last = results[0].last;
+    //     }
+    //   }
+    // );
   	db.query(
-   	 	'INSERT INTO attivita (data, annoaccademico, tipologia, titolo, argomento, numero, cb) VALUES (?,?, "?", "?","?",?, ?)',
-    		[new Date(req.body.data), aacorso, req.body.tipologia, req.body.titolo, req.body.argomento, req.body.numero, req.body.cb],
+   	 	'INSERT INTO attivita (data, annoaccademico, tipologia, titolo, argomento, numero, ore, cb) VALUES (?,?,?,?,?,?,?,?)',
+    		[new Date(req.body.data), aacorso, req.body.tipologia, req.body.titolo, req.body.argomento, req.body.numero, req.body.ore, req.body.cb],
     		(error) => {
       		if (error) {
         		console.error(error);
@@ -24,7 +33,7 @@ function createRouter(db) {
   	);
   });
 
-  router.get('/attivita/tipologia', (req, res, next) => {
+  router.get('/event/tipologia', (req, res, next) => {
   	db.query(
    	 	'SELECT * FROM tipologialezione',
       (error, results) => {
@@ -39,7 +48,7 @@ function createRouter(db) {
   });
 
   // lezioni
-  router.get('/attivita/', function (req, res, next) {
+  router.get('/event/', function (req, res, next) {
     db.query(
       'SELECT * FROM attivita ORDER BY data, numero',
       (error, results) => {
@@ -53,7 +62,7 @@ function createRouter(db) {
     );
   });
 
-  router.get('/attivita/:idanno', function (req, res, next) {
+  router.get('/event/:idanno', function (req, res, next) {
     db.query(
       'SELECT * FROM attivita WHERE annoaccademico = ? ORDER BY data',
       [req.params.idanno],
@@ -69,7 +78,7 @@ function createRouter(db) {
   });
 
   // seleziona una attivita
-  router.get('/attivita/:id', function (req, res, next) {
+  router.get('/event/:id', function (req, res, next) {
     db.query(
       'SELECT * FROM attivita WHERE id=?',
       [req.params.id],
@@ -84,7 +93,7 @@ function createRouter(db) {
     );
   });
 
-  router.put('/attivita/:id', function (req, res, next) {
+  router.put('/event/:id', function (req, res, next) {
     var actDate = Date(req.body.data);
     var aacorso = actDate.getFullYear();
     var nuovoaa = new Date(aacorso + '-09-15');
@@ -104,7 +113,7 @@ function createRouter(db) {
     );
   });  
 
-  router.delete('/attivita/:id', function (req, res, next) {
+  router.delete('/event/:id', function (req, res, next) {
     db.query(
       'DELETE FROM attivita WHERE id=?',
       [req.params.id],
@@ -134,7 +143,7 @@ function createRouter(db) {
   });
 
   // esercizi di una lezione
-  router.get('/attivita/:id/esercizi', function (req, res, next) {
+  router.get('/event/:id/esercizi', function (req, res, next) {
     db.query(
       'SELECT * FROM esercizi INNER JOIN attivitaesercizi ON esercizi.id = attivitaesercizi.esercizifk WHERE attivitaesercizi.lezionifk = ?',
       [req.params.id],
